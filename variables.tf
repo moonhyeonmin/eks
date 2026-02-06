@@ -2,27 +2,27 @@
 # 이 변수들은 인프라 구성을 유연하게 만들어 줍니다.
 
 variable "region" {
-  default = "ap-northeast-2"  # AWS 리전 설정
+  default = "us-east-2"  # AWS 리전 설정
 }
 
 variable "cluster_name" {
-  default = "<Cluster_이름>"  # EKS 클러스터 이름
+  default = "user03"  # EKS 클러스터 이름
 }
 
 variable "vpc_cidr" {
-  default = "10.0.0.0/16"     # VPC의 CIDR 블록
+  default = "10.10.0.0/16"     # VPC의 CIDR 블록
 }
 
 variable "azs" {
-  default = ["ap-northeast-2a", "ap-northeast-2c"]  # 사용할 가용 영역
+  default = ["us-east-2a", "us-east-2c"]  # 사용할 가용 영역
 }
 
 variable "public_subnets" {
-  default = ["10.0.1.0/24", "10.0.2.0/24"]  # 퍼블릭 서브넷 CIDR
+  default = ["10.10.1.0/24", "10.10.2.0/24"]  # 퍼블릭 서브넷 CIDR
 }
 
 variable "private_subnets" {
-  default = ["10.0.3.0/24", "10.0.4.0/24"]  # 프라이빗 서브넷 CIDR
+  default = ["10.10.3.0/24", "10.10.4.0/24"]  # 프라이빗 서브넷 CIDR
 }
 
 variable "cluster_version" {
@@ -30,7 +30,7 @@ variable "cluster_version" {
 }
 
 variable "namespace" {
-  default = "petclinic"  # 기본 네임스페이스 설정
+  default = "petclinic_03"  # 기본 네임스페이스 설정
 }
 
 variable "node_groups" {
@@ -47,9 +47,9 @@ variable "node_groups" {
     eks_node_gitops = {
       name           = "eks_node_gitops00"  # nodegroup 이름 
       instance_types = ["t3.medium"]
-      min_size       = 1
+      min_size       = 2
       max_size       = 3
-      desired_size   = 1
+      desired_size   = 2
       disk_size      = 20
     }
   }
@@ -78,5 +78,5 @@ variable "aws_auth_users" {
 variable "bastion_key_name" {
   description = "The key name of the Key Pair to use for the bastion instance"
   type        = string
-  default     = "<로그인키_이름>"  # bastion login key name
+  default     = "test"  # bastion login key name
 }

@@ -19,15 +19,15 @@ sudo mv kubectl /usr/local/bin/
 echo "Configuring AWS CLI"
 mkdir -p /home/ubuntu/.aws
 echo "[default]" > /home/ubuntu/.aws/config
-echo "region = ap-northeast-2" >> /home/ubuntu/.aws/config
+echo "region = us-east-2" >> /home/ubuntu/.aws/config
 
 # aws sts get-caller-identity
 # aws eks list-clusters
 
 # 쿠버네티스 토큰 가져오기. 클러스터명, 리전명 수정
 echo "Configuring kubeconfig"
-aws eks get-token --cluster-name <Cluster_이름> --region ap-northeast-2
-aws eks update-kubeconfig --name <Cluster_이름> --region ap-northeast-2
+aws eks get-token --cluster-name user03_cluster --region us-east-2
+aws eks update-kubeconfig --name user03_cluster --region us-east-2
 
 echo "Setting permissions"
 chown -R ubuntu:ubuntu /home/ubuntu/.kube /home/ubuntu/.aws
